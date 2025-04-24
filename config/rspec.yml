@@ -1,4 +1,4 @@
-require: rubocop-rspec
+plugins: rubocop-rspec
 
 inherit_from:
   - capybara.yml
@@ -20,18 +20,25 @@ RSpec/MultipleMemoizedHelpers:
 RSpec/DescribeClass:
   Enabled: false
 
-# We accept multiple expectations (within reason), preferring
+# We accept multiple expectations (within reason), preferring
 # them to running mulitple similar tests.
 RSpec/MultipleExpectations:
   Enabled: false
 
-# Part of the GOV.UK feature style involves instance variables.
+# Part of the GOV.UK feature style involves instance variables.
 RSpec/InstanceVariable:
   Exclude:
     - 'spec/features/**/*.rb'
     - 'spec/system/**/*.rb'
 
-# In GOV.UK we quite often test that a class received a method.
+# The GOV.UK Feature spec style has expectations in method calls so this
+# cop falsely triggers.
+RSpec/NoExpectationExample:
+  Exclude:
+    - 'spec/features/**/*.rb'
+    - 'spec/system/**/*.rb'
+
+# In GOV.UK we quite often test that a class received a method.
 RSpec/MessageSpies:
   Enabled: false
 
@@ -51,3 +58,20 @@ RSpec/ContextWording:
     - without
     - and
     - but
+
+# Within GOV.UK we use Capybara test method syntax of feature,
+# scenario.
+# We don't want this cop outside of feature or system specs though.
+RSpec/Dialect:
+  # Disables all Capybara-specific methods that have the same native
+  # RSpec method (e.g. are just aliases)
+  PreferredMethods:
+    background: :before
+    scenario:   :it
+    xscenario:  :xit
+    given:      :let
+    given!:     :let!
+    feature:    :describe
+  Exclude:
+    - 'spec/features/**/*.rb'
+    - 'spec/system/**/*.rb'
