@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name          = "publishing_platform_rubocop"
-  spec.version       = "0.2.7"
+  spec.version       = "0.3.0"
   spec.authors       = ["Publishing Platform"]
 
   spec.summary       = "RuboCop Publishing Platform"
@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
 
   spec.files         = Dir["config/**/*", "*.md"]
 
-  spec.required_ruby_version = ">= 3.1"
+  spec.required_ruby_version = ">= 3.2"
 
   spec.add_development_dependency "rake", "~> 13"
 
