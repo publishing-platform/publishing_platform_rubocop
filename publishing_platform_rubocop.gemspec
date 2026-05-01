@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name          = "publishing_platform_rubocop"
-  spec.version       = "0.3.0"
+  spec.version       = "0.3.1"
   spec.authors       = ["Publishing Platform"]
 
   spec.summary       = "RuboCop Publishing Platform"
